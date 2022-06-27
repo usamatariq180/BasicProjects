@@ -115,8 +115,8 @@
         });
 
         email.addEventListener("input", function () {
-            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if (!this.value.match(mailformat)) {
+            var specialChar = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!this.value.match(specialChar)) {
                 document.getElementById("err_em").innerHTML = "You have entered an invalid email address!";
                 check_em = 0;
             }

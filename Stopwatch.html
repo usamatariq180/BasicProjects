@@ -1,0 +1,208 @@
+<!-- Project by Usama Tariq -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <title>Stopwatch</title>
+    <style>
+        body {
+            padding: 70px 100px;
+        }
+
+        h1 {
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            color: aliceblue;
+            background-color: rgb(12, 85, 85);
+            margin: 0px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 25px;
+            margin-top: 20px;
+        }
+
+        .time {
+            font-size: 150px;
+            font-weight: 700;
+        }
+
+        #main_1 {
+            background-color: rgb(24, 149, 149);
+            text-align: center;
+            padding-top: 100px;
+
+        }
+
+        #main_2 {
+            background-color: rgb(24, 149, 149);
+            text-align: center;
+            padding-bottom: 100px;
+
+        }
+
+        button {
+            border-radius: 5px;
+            margin: 5px;
+            color: aliceblue;
+            font-size: 20px;
+            padding: 0px 10px;
+        }
+
+        #start {
+            background-color: rgb(114, 187, 114);
+        }
+
+        #stop {
+            background-color: rgb(57, 142, 170);
+        }
+
+        #reset {
+            background-color: rgb(178, 91, 91);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Basic JS Projects by Usama Tariq</h1>
+    <span>
+        <a href="/main.html"> <i class="bi bi-arrow-left-circle"></i> </a>
+    </span>
+    <div class="contaier-fluid">
+        <div class="row justify-content-center">
+            <div class="col-11 ">
+                <div id="main_1">
+                    <span class="time" id="hr">00</span>
+                    <span>Hours</span>
+
+                    <span class="time" id="min">00</span>
+                    <span>Minutes</span>
+
+                    <span class="time" id="sec">00</span>
+                    <span>Seconds</span>
+
+                    <span class="time" id="msec">00</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <div id="main_2">
+                    <button id="start" onclick="start()">
+                        Start
+                    </button>
+                    <button id="stop" onclick="stop()">
+                        Stop
+                    </button>
+                    <button id="reset" onclick="reset()">
+                        Reset
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let check = false;
+        let hr = 0;
+        let min = 0;
+        let sec = 0;
+        let msec = 0;
+
+       
+        function start() {
+            check = true;
+            stopwatch();
+        };
+        function stop() {
+            check = false;
+        };
+        function reset() {
+            check = false;
+            hr = 0;
+            min = 0;
+            sec = 0;
+            msec = 0;
+            var hrString = hr;
+            var minString = min;
+            var secString = sec;
+            var msecString = msec;
+
+            hrString = "0" + hrString;
+            minString = "0" + minString;
+            secString = "0" + secString;
+            msecString = "0" + msecString;
+
+            document.getElementById("hr").innerHTML = hrString;
+            document.getElementById("min").innerHTML = minString;
+            document.getElementById("sec").innerHTML = secString;
+            document.getElementById("msec").innerHTML = msecString;
+        };
+
+        function stopwatch() {
+
+            if (check == true) {
+                msec = msec + 1;
+
+                if (msec == 100) {
+                    msec = 0;
+                    sec = sec + 1;
+                }
+
+                if (sec == 60) {
+                    sec = 0;
+                    min = min + 1;
+                }
+                if (min == 60) {
+                    min = 0;
+                    hr = hr + 1;
+                }
+
+                var hrString = hr;
+                var minString = min;
+                var secString = sec;
+                var msecString = msec;
+
+                if (hr < 10) {
+                    hrString = "0" + hrString;
+                }
+                if (min < 10) {
+                    minString = "0" + minString;
+                }
+                if (sec < 10) {
+                    secString = "0" + secString;
+                }
+                if (msec < 10) {
+                    msecString = "0" + msecString;
+                }
+
+                document.getElementById("hr").innerHTML = hrString;
+                document.getElementById("min").innerHTML = minString;
+                document.getElementById("sec").innerHTML = secString;
+                document.getElementById("msec").innerHTML = msecString;
+
+                setTimeout("stopwatch()", 10);
+            }
+        };
+
+
+    </script>
+</body>
+
+</html>
